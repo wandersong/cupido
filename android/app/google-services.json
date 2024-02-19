@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "448810925636",
+    "project_id": "dating-cupido-catolico-u8vab5",
+    "storage_bucket": "dating-cupido-catolico-u8vab5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448810925636:android:2f40007a4a164f23854611",
+        "android_client_info": {
+          "package_name": "com.cupidocatolico.datingcupidocatolico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448810925636-8qri46grpih8kr856e21ohjabaq6otia.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cupidocatolico.datingcupidocatolico",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "448810925636-haes6nakpa0e3rgcisouou45ococ43rk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIcq1I4dVxeD3oiWR_cJCCoFAOj4y2k9s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448810925636-haes6nakpa0e3rgcisouou45ococ43rk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "448810925636-s5q0q499etjebhhhbqvgqsgp0ec378to.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cupidocatolico.datingcupidocatolico"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
