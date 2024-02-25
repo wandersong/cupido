@@ -19,8 +19,6 @@ export '/d_formulario_inicial/b_formulario_paroquia/b_formulario_paroquia_widget
     show BFormularioParoquiaWidget;
 export '/d_formulario_inicial/c_formulario_imagem/c_formulario_imagem_widget.dart'
     show CFormularioImagemWidget;
-export '/d_formulario_inicial/a_concetimento/a_concetimento_widget.dart'
-    show AConcetimentoWidget;
 export '/d_formulario_inicial/bb_formulario_swipe/bb_formulario_swipe_widget.dart'
     show BbFormularioSwipeWidget;
 export '/a_paginas_principais/home_swipe_info/home_swipe_info_widget.dart'

@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'a_criar_conta_model.dart';
@@ -70,6 +69,8 @@ class _ACriarContaWidgetState extends State<ACriarContaWidget>
 
     _model.passwordController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -81,15 +82,6 @@ class _ACriarContaWidgetState extends State<ACriarContaWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -110,7 +102,7 @@ class _ACriarContaWidgetState extends State<ACriarContaWidget>
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 0.0, 32.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 32.0),
                   child: Container(
                     width: 320.0,
                     decoration: BoxDecoration(
@@ -128,7 +120,7 @@ class _ACriarContaWidgetState extends State<ACriarContaWidget>
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.asset(
                               'assets/images/Group_481494.png',
-                              width: 250.0,
+                              width: 200.0,
                               fit: BoxFit.fitWidth,
                             ),
                           ),
@@ -174,7 +166,7 @@ class _ACriarContaWidgetState extends State<ACriarContaWidget>
                                   0.0, 8.0, 0.0, 24.0),
                               child: Text(
                                 'Crie uma conta usando o formulário abaixo.',
-                                textAlign: TextAlign.start,
+                                textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context).labelLarge,
                               ),
                             ),
@@ -330,8 +322,8 @@ class _ACriarContaWidgetState extends State<ACriarContaWidget>
                                     return;
                                   }
 
-                                  context.goNamedAuth(
-                                      'A_concetimento', context.mounted);
+                                  context.pushNamedAuth(
+                                      'A_FormularioSexo', context.mounted);
                                 },
                                 text: 'Criar Conta',
                                 options: FFButtonOptions(

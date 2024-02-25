@@ -4,7 +4,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'ab_login_model.dart';
@@ -70,6 +69,8 @@ class _AbLoginWidgetState extends State<AbLoginWidget>
 
     _model.passwordController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -81,15 +82,6 @@ class _AbLoginWidgetState extends State<AbLoginWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -113,7 +105,7 @@ class _AbLoginWidgetState extends State<AbLoginWidget>
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 0.0, 32.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 32.0),
                       child: Container(
                         width: 320.0,
                         decoration: BoxDecoration(
@@ -131,7 +123,7 @@ class _AbLoginWidgetState extends State<AbLoginWidget>
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.asset(
                                   'assets/images/Group_481494.png',
-                                  width: 250.0,
+                                  width: 200.0,
                                   fit: BoxFit.fitWidth,
                                 ),
                               ),
@@ -178,7 +170,7 @@ class _AbLoginWidgetState extends State<AbLoginWidget>
                                       0.0, 8.0, 0.0, 24.0),
                                   child: Text(
                                     'Preencha os dados abaixo para acessar sua conta.',
-                                    textAlign: TextAlign.start,
+                                    textAlign: TextAlign.center,
                                     style:
                                         FlutterFlowTheme.of(context).labelLarge,
                                   ),

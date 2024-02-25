@@ -8,7 +8,6 @@ import '/flutter_flow/upload_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:octo_image/octo_image.dart';
 import 'edit_profile_auth2_model.dart';
 export 'edit_profile_auth2_model.dart';
@@ -51,6 +50,8 @@ class _EditProfileAuth2WidgetState extends State<EditProfileAuth2Widget> {
     _model.myBioController ??= TextEditingController(
         text: valueOrDefault(currentUserDocument?.shortDescription, ''));
     _model.myBioFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

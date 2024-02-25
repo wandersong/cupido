@@ -7,7 +7,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'home_page_swipe_model.dart';
 export 'home_page_swipe_model.dart';
@@ -31,7 +30,7 @@ class _HomePageSwipeWidgetState extends State<HomePageSwipeWidget>
       effects: [
         ScaleEffect(
           curve: Curves.elasticOut,
-          delay: 2000.ms,
+          delay: 0.ms,
           duration: 600.ms,
           begin: const Offset(0.0, 0.0),
           end: const Offset(1.0, 1.0),
@@ -43,7 +42,7 @@ class _HomePageSwipeWidgetState extends State<HomePageSwipeWidget>
       effects: [
         ScaleEffect(
           curve: Curves.elasticOut,
-          delay: 2000.ms,
+          delay: 0.ms,
           duration: 600.ms,
           begin: const Offset(0.0, 0.0),
           end: const Offset(1.0, 1.0),
@@ -56,6 +55,8 @@ class _HomePageSwipeWidgetState extends State<HomePageSwipeWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => HomePageSwipeModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -67,21 +68,12 @@ class _HomePageSwipeWidgetState extends State<HomePageSwipeWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     return AuthUserStreamWidget(
       builder: (context) => StreamBuilder<List<UsersRecord>>(
         stream: queryUsersRecord(
           queryBuilder: (usersRecord) => usersRecord
               .where(
-                'sexodesejado',
+                'sexo',
                 isEqualTo:
                     valueOrDefault(currentUserDocument?.sexodesejado, ''),
               )
@@ -112,10 +104,6 @@ class _HomePageSwipeWidgetState extends State<HomePageSwipeWidget>
           }
           List<UsersRecord> homePageSwipeUsersRecordList =
               snapshot.data!.where((u) => u.uid != currentUserUid).toList();
-          // Return an empty Container when the item does not exist.
-          if (snapshot.data!.isEmpty) {
-            return Container();
-          }
           final homePageSwipeUsersRecord =
               homePageSwipeUsersRecordList.isNotEmpty
                   ? homePageSwipeUsersRecordList.first
@@ -153,7 +141,7 @@ class _HomePageSwipeWidgetState extends State<HomePageSwipeWidget>
                                             children: [
                                               ClipRRect(
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(14.0),
                                                 child: Image.network(
                                                   homePageSwipeUsersRecord!
                                                       .photoUrl,
@@ -167,7 +155,7 @@ class _HomePageSwipeWidgetState extends State<HomePageSwipeWidget>
                                                     0.0, 1.0),
                                                 child: Container(
                                                   width: double.infinity,
-                                                  height: 100.0,
+                                                  height: 300.0,
                                                   decoration: const BoxDecoration(
                                                     gradient: LinearGradient(
                                                       colors: [
@@ -181,39 +169,166 @@ class _HomePageSwipeWidgetState extends State<HomePageSwipeWidget>
                                                       end: AlignmentDirectional(
                                                           0, 1.0),
                                                     ),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      bottomLeft:
+                                                          Radius.circular(10.0),
+                                                      bottomRight:
+                                                          Radius.circular(10.0),
+                                                      topLeft:
+                                                          Radius.circular(0.0),
+                                                      topRight:
+                                                          Radius.circular(0.0),
+                                                    ),
                                                   ),
-                                                  child: Align(
-                                                    alignment:
-                                                        const AlignmentDirectional(
-                                                            0.0, 1.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  5.0),
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          homePageSwipeUsersRecord
-                                                              .displayName,
-                                                          'nome',
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 20.0),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        Align(
+                                                          alignment:
+                                                              const AlignmentDirectional(
+                                                                  0.0, 1.0),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        5.0),
+                                                            child: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                homePageSwipeUsersRecord
+                                                                    .displayName,
+                                                                'nome',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Nunito',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .tertiary,
+                                                                    fontSize:
+                                                                        22.0,
+                                                                  ),
+                                                            ),
+                                                          ),
                                                         ),
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Nunito',
-                                                                  color: FlutterFlowTheme.of(
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0),
+                                                              child: RichText(
+                                                                textScaleFactor:
+                                                                    MediaQuery.of(
+                                                                            context)
+                                                                        .textScaleFactor,
+                                                                text: TextSpan(
+                                                                  children: [
+                                                                    TextSpan(
+                                                                      text:
+                                                                          'Idade ',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Nunito',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).tertiary,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                    ),
+                                                                    TextSpan(
+                                                                      text: valueOrDefault<
+                                                                          String>(
+                                                                        homePageSwipeUsersRecord
+                                                                            .idade
+                                                                            .toString(),
+                                                                        '00',
+                                                                      ),
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .tertiary,
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                  style: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .tertiary,
-                                                                  fontSize:
-                                                                      22.0,
+                                                                      .bodyMedium,
                                                                 ),
-                                                      ),
+                                                              ),
+                                                            ),
+                                                            RichText(
+                                                              textScaleFactor:
+                                                                  MediaQuery.of(
+                                                                          context)
+                                                                      .textScaleFactor,
+                                                              text: TextSpan(
+                                                                children: [
+                                                                  TextSpan(
+                                                                    text:
+                                                                        'Cidade ',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Nunito',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).tertiary,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                  ),
+                                                                  TextSpan(
+                                                                    text: valueOrDefault<
+                                                                        String>(
+                                                                      homePageSwipeUsersRecord
+                                                                          .cidade,
+                                                                      '00',
+                                                                    ),
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiary,
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
                                                 ),
@@ -398,6 +513,47 @@ class _HomePageSwipeWidgetState extends State<HomePageSwipeWidget>
                                                                   },
                                                                 ),
                                                               });
+                                                              if (homePageSwipeUsersRecord.like
+                                                                  .contains(
+                                                                      currentUserUid)) {
+                                                                await ChatRecord
+                                                                    .collection
+                                                                    .doc()
+                                                                    .set({
+                                                                  ...createChatRecordData(
+                                                                    criadoPor:
+                                                                        currentUserReference,
+                                                                  ),
+                                                                  ...mapToFirestore(
+                                                                    {
+                                                                      'membros': functions.listaUsuariosChat(
+                                                                          currentUserReference!,
+                                                                          homePageSwipeUsersRecord.reference),
+                                                                    },
+                                                                  ),
+                                                                });
+                                                                ScaffoldMessenger.of(
+                                                                        context)
+                                                                    .showSnackBar(
+                                                                  SnackBar(
+                                                                    content:
+                                                                        Text(
+                                                                      'Novo match',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .primaryText,
+                                                                      ),
+                                                                    ),
+                                                                    duration: const Duration(
+                                                                        milliseconds:
+                                                                            4000),
+                                                                    backgroundColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .secondary,
+                                                                  ),
+                                                                );
+                                                              }
 
                                                               context.pushNamed(
                                                                 'HomePageSwipe',

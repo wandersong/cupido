@@ -36,3 +36,10 @@ List<DocumentReference> createChatUserList(
 ) {
   return [userRef1, userRef2];
 }
+
+List<DocumentReference> listaUsuariosChat(
+  DocumentReference user1,
+  DocumentReference user2,
+) {
+  return [user1, user2];
+}

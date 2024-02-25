@@ -9,6 +9,7 @@ import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
 void main() async {
@@ -132,47 +133,50 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'HomePageSwipe': const HomePageSwipeWidget(),
       'chat_list': const ChatListWidget(),
+      'D_Perfil': const DPerfilWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
     return Scaffold(
       body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: Visibility(
-        visible: responsiveVisibility(
-          context: context,
-          desktop: false,
-        ),
-        child: BottomNavigationBar(
-          currentIndex: currentIndex,
-          onTap: (i) => setState(() {
-            _currentPage = null;
-            _currentPageName = tabs.keys.toList()[i];
-          }),
-          backgroundColor: Colors.white,
-          selectedItemColor: FlutterFlowTheme.of(context).primary,
-          unselectedItemColor: const Color(0x8A000000),
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          type: BottomNavigationBarType.fixed,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.people_sharp,
-                size: 24.0,
-              ),
-              label: 'Swipe',
-              tooltip: '',
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (i) => setState(() {
+          _currentPage = null;
+          _currentPageName = tabs.keys.toList()[i];
+        }),
+        backgroundColor: FlutterFlowTheme.of(context).primary,
+        selectedItemColor: FlutterFlowTheme.of(context).secondary,
+        unselectedItemColor: FlutterFlowTheme.of(context).tertiary,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.favorite_border_rounded,
+              size: 24.0,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.chat,
-                size: 24.0,
-              ),
-              label: 'Home',
-              tooltip: '',
-            )
-          ],
-        ),
+            label: 'Swipe',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.chat,
+              size: 24.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person_outlined,
+              size: 24.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          )
+        ],
       ),
     );
   }

@@ -112,7 +112,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'D_Perfil',
           path: '/dPerfil',
-          builder: (context, params) => const DPerfilWidget(),
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'D_Perfil')
+              : const DPerfilWidget(),
         ),
         FFRoute(
           name: 'C_EditarPerfil',
@@ -138,11 +140,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'c_FormularioImagem',
           path: '/cFormularioImagem',
           builder: (context, params) => const CFormularioImagemWidget(),
-        ),
-        FFRoute(
-          name: 'A_concetimento',
-          path: '/aConcetimento',
-          builder: (context, params) => const AConcetimentoWidget(),
         ),
         FFRoute(
           name: 'Bb_FormularioSwipe',
@@ -348,6 +345,7 @@ class FFRoute {
           return null;
         },
         pageBuilder: (context, state) {
+          fixStatusBarOniOS16AndBelow(context);
           final ffParams = FFParameters(state, asyncParams);
           final page = ffParams.hasFutures
               ? FutureBuilder(
@@ -356,14 +354,13 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
+              ? Container(
+                  color: FlutterFlowTheme.of(context).primary,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/Group.svg',
+                      width: 200.0,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 )

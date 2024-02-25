@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'bb_formulario_swipe_widget.dart' show BbFormularioSwipeWidget;
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,9 @@ class BbFormularioSwipeModel extends FlutterFlowModel<BbFormularioSwipeWidget> {
   TextEditingController? textFieldParoquiasController3;
   String? Function(BuildContext, String?)?
       textFieldParoquiasController3Validator;
+  // State field(s) for DropDown widget.
+  String? dropDownValue;
+  FormFieldController<String>? dropDownValueController;
 
   /// Initialization and disposal methods.
 

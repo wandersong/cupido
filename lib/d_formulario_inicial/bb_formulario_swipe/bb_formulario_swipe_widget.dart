@@ -1,10 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'bb_formulario_swipe_model.dart';
 export 'bb_formulario_swipe_model.dart';
 
@@ -34,6 +35,8 @@ class _BbFormularioSwipeWidgetState extends State<BbFormularioSwipeWidget> {
 
     _model.textFieldParoquiasController3 ??= TextEditingController();
     _model.textFieldParoquiasFocusNode3 ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -45,29 +48,20 @@ class _BbFormularioSwipeWidgetState extends State<BbFormularioSwipeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (isiOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(
-          statusBarBrightness: Theme.of(context).brightness,
-          systemStatusBarContrastEnforced: true,
-        ),
-      );
-    }
-
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondary,
+        backgroundColor: FlutterFlowTheme.of(context).primary,
         body: SafeArea(
           top: true,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Align(
                   alignment: const AlignmentDirectional(-1.0, 0.0),
@@ -78,6 +72,7 @@ class _BbFormularioSwipeWidgetState extends State<BbFormularioSwipeWidget> {
                       'Como você se chama?',
                       style: FlutterFlowTheme.of(context).labelLarge.override(
                             fontFamily: 'Nunito',
+                            color: FlutterFlowTheme.of(context).tertiary,
                             fontSize: 18.0,
                           ),
                     ),
@@ -162,6 +157,8 @@ class _BbFormularioSwipeWidgetState extends State<BbFormularioSwipeWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito',
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
                                     fontSize: 18.0,
                                   ),
                             ),
@@ -236,6 +233,8 @@ class _BbFormularioSwipeWidgetState extends State<BbFormularioSwipeWidget> {
                                   .labelLarge
                                   .override(
                                     fontFamily: 'Nunito',
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
                                     fontSize: 18.0,
                                   ),
                             ),
@@ -299,6 +298,84 @@ class _BbFormularioSwipeWidgetState extends State<BbFormularioSwipeWidget> {
                             ),
                           ),
                         ),
+                        Align(
+                          alignment: const AlignmentDirectional(-1.0, 0.0),
+                          child: Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 20.0, 0.0, 0.0),
+                            child: Text(
+                              'Em qual estado você mora?',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelLarge
+                                  .override(
+                                    fontFamily: 'Nunito',
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                    fontSize: 18.0,
+                                  ),
+                            ),
+                          ),
+                        ),
+                        FlutterFlowDropDown<String>(
+                          controller: _model.dropDownValueController ??=
+                              FormFieldController<String>(null),
+                          options: const [
+                            'AC',
+                            'AL',
+                            'AP',
+                            'AM',
+                            'BA',
+                            'CE',
+                            'DF',
+                            'ES',
+                            'GO',
+                            'MA',
+                            'MT',
+                            'MS',
+                            'MG',
+                            'PA',
+                            'PB',
+                            'PR',
+                            'PE',
+                            'PI',
+                            'RJ',
+                            'RN',
+                            'RS',
+                            'RO',
+                            'RR',
+                            'SC',
+                            'SP',
+                            'SE',
+                            'TO'
+                          ],
+                          onChanged: (val) =>
+                              setState(() => _model.dropDownValue = val),
+                          width: double.infinity,
+                          height: 50.0,
+                          searchHintTextStyle:
+                              FlutterFlowTheme.of(context).labelMedium,
+                          searchTextStyle:
+                              FlutterFlowTheme.of(context).bodyMedium,
+                          textStyle: FlutterFlowTheme.of(context).bodyMedium,
+                          searchHintText: 'Buscar',
+                          icon: Icon(
+                            Icons.keyboard_arrow_down_rounded,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 24.0,
+                          ),
+                          fillColor:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          elevation: 2.0,
+                          borderColor: FlutterFlowTheme.of(context).alternate,
+                          borderWidth: 2.0,
+                          borderRadius: 8.0,
+                          margin: const EdgeInsetsDirectional.fromSTEB(
+                              16.0, 4.0, 16.0, 4.0),
+                          hidesUnderline: true,
+                          isOverButton: true,
+                          isSearchable: true,
+                          isMultiSelect: false,
+                        ),
                       ],
                     ),
                   ),
@@ -315,9 +392,10 @@ class _BbFormularioSwipeWidgetState extends State<BbFormularioSwipeWidget> {
                             (_model.textFieldParoquiasFocusNode3?.hasFocus ??
                                     false)
                                 .toString(),
+                        estado: _model.dropDownValue,
                       ));
 
-                      context.pushNamed('B_CriarPerfiil');
+                      context.pushNamed('HomePageSwipe');
                     },
                     text: 'Salvar e avançar',
                     options: FFButtonOptions(
@@ -327,11 +405,11 @@ class _BbFormularioSwipeWidgetState extends State<BbFormularioSwipeWidget> {
                           const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
                           const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: FlutterFlowTheme.of(context).tertiary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Nunito',
-                                color: Colors.white,
+                                color: FlutterFlowTheme.of(context).primaryText,
                               ),
                       elevation: 3.0,
                       borderSide: const BorderSide(
